@@ -5,6 +5,9 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
   Or you can visit <a href="https://web.sketchub.in/p/808">S2DGE on Sketchub</a> for the previous version
 </p>
 
+> [!NOTE]
+> The latest update of Sketchware 2D Game Engine 0.5 will be released at the end of December
+
 ## Progress (v.0.5)
 - [x] Migrated to Canvas & SurfaceView
 - [x] Animated TileMap
