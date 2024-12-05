@@ -1,4 +1,4 @@
-## Development
+## Release
 
 Ofc its empty, dont ask me when to release, but ask me "can i join the development?" instead xD
 <p>
@@ -6,9 +6,9 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 </p>
 
 > [!IMPORTANT]
-> The latest update of Sketchware 2D Game Engine 0.5 will be released at the end of December
+> The latest update of Sketchware 2D Game Engine 0.5 will be released at ***the end of December 2024***
 
-## Progress (v.0.5)
+## Development (v.0.5)
 - [x] Migrated to Canvas & SurfaceView
 - [x] Animated TileMap
 - [x] Multi-layer TileMap
@@ -18,3 +18,4 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [x] Optimized Render on Thread
 - [ ] Collisions feature
 - [ ] Documentation (0%)
+> Screenshots of the project progress will be added very soon
