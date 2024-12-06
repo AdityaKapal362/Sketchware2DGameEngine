@@ -5,9 +5,8 @@
 <p>Whether you're a beginner exploring game development or an experienced Sketchware user looking to expand your creativity, this engine provides the tools you need to build exciting 2D games efficiently.</p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/screenshots/3257632.jpg">
-  <source media="(prefers-color-scheme: light)" srcset="/screenshots/3336028.jpg">
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/25423296/163456779-a8556205-d0a5-45e2-ac17-42d089e3c3f8.png">
+  <source srcset="/screenshots/3257632.jpg">
+  <source srcset="/screenshots/3336028.jpg">
 </picture>
 
 ## How It Works
