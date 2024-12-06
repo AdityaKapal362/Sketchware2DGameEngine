@@ -5,8 +5,8 @@
 <p>Whether you're a beginner exploring game development or an experienced Sketchware user looking to expand your creativity, this engine provides the tools you need to build exciting 2D games efficiently.</p>
 
 <p align="center">
-  <img src="./screenshots/3336028.jpg" alt="Second Image" width="240"/>
-  <img src="./screenshots/3257632.jpg" alt="First Image" width="240"/>
+  <img src="./screenshots/3336028.jpg" alt="Second Image" height="140"/>
+  <img src="./screenshots/3257632.jpg" alt="First Image" height="140"/>
 </p>
 
 
