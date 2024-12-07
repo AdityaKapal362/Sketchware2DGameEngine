@@ -33,9 +33,10 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [x] Multi-layer TileMap
 - [x] TileMap Shaders
 - [x] Multiplayer Support
-- [ ] Animated Player
-- [x] Optimized Render on Thread
+- [x] Animated Player
 - [ ] Collisions feature
 - [ ] Basic Physics
+- [ ] Fix Black-grids issue
+- [x] Optimized Render on Thread
 - [ ] Documentation (0%)
 > Screenshots of the project progress will be added very soon
