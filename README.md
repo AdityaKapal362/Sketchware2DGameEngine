@@ -10,9 +10,9 @@
 </p>
 
 ## How it started
-In the middle of january 2020, i was looking for new idea that i can implement in Sketchware. I made too many tools in that day & figured that maybe if make a game it will be great and something new to learn for me. I was looking for an example projects on Sketchware Community page and found nothing i can learn.
+In the middle of january 2020, i was looking for new idea that i can implement in Sketchware. I made too many tools in that day & figured that maybe if make a game it will be great and something new to learn for me. Maintaining SH Recovery also became very boring to me. I was looking for an example projects on Sketchware Community page and found nothing i can learn. I realized something that day, i've played a game named CS2D for years since i was a kid. Then i proceeds to learn game developments on Youtube. Nothing i can learn from there because they uses Unity, where i uses Sketchware. The frustation made me ignored the idea for 3 weeks. After that, i came up with an idea of using FrameLayout as the canvas and ImageView(s) as the TileMap _(i was forgot the reasons why i came up with FrameLayout & ImageView lol)_
 
-Then im explored github just to find a simple game that based on Java, not a single project caught my attention. And it took me a month just to find what i will be making about. Then on 10-ish february 2020, i found a simple RPG game on github, its like a bomberman game.
+Then the story begins here, on 7th february 2020, i started the development, 1 week full coding with 3 hours sleep each day. Until i released the very first version of Sketchware 2D Game Engine on 23 october 2020 on Sketchub.
 
 ## How It Works
 The engine integrates seamlessly into Sketchware by providing pre-configured blocks and templates that allow developers to:
