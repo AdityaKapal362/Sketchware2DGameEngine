@@ -34,13 +34,14 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [x] Migrated to Canvas & SurfaceView
 - [x] Animated TileMap
 - [x] Multi-layer TileMap
-- [x] TileMap Shaders
+- [ ] TileMap Shaders
 - [x] Multiplayer Support
-- [x] Animated Player
+- [x] Animated Player & Movements
 - [ ] Collisions feature
 - [ ] Basic Physics
 - [ ] Fix Black-grids issue
 - [x] Optimized Render on Thread
-- [ ] Documentation (0%)
 - [x] Firebase Database Support
+- [ ] Interactive NPCs
+- [ ] Documentation (0%)
 > Screenshots of the project progress will be added very soon
