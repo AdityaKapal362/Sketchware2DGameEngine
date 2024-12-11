@@ -44,4 +44,10 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [x] Firebase Database Support
 - [ ] Interactive NPCs
 - [ ] Documentation (0%)
-> Screenshots of the project progress will be added very soon
+
+<p align="center">
+  <img src="./screenshots/ss0.5-1.jpg" alt="s2dge:0.5" height="140"/>
+  <img src="./screenshots/ss0.5-2.jpg" alt="s2dge:0.5" height="140"/>
+</p>
+
+> More screenshots of the project progress will be added very soon
