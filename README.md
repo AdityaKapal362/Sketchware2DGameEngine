@@ -9,7 +9,10 @@
   <img src="./screenshots/3257632.jpg" alt="First Image" height="140"/>
 </p>
 
+## How it started
+In the middle of january 2020, i was looking for new idea that i can implement in Sketchware. I made too many tools in that day & figured that maybe if make a game it will be great and something new to learn for me. I was looking for an example projects on Sketchware Community page and found nothing i can learn.
 
+Then im explored github just to find a simple game that based on Java, not a single project caught my attention. And it took me a month just to find what i will be making about. Then on 10-ish february 2020, i found a simple RPG game on github, its like a bomberman game.
 
 ## How It Works
 The engine integrates seamlessly into Sketchware by providing pre-configured blocks and templates that allow developers to:
@@ -39,4 +42,5 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [ ] Fix Black-grids issue
 - [x] Optimized Render on Thread
 - [ ] Documentation (0%)
+- [x] Firebase Database Support
 > Screenshots of the project progress will be added very soon
