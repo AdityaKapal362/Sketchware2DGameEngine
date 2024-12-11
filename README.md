@@ -12,7 +12,7 @@
 ## How it started
 In the middle of january 2020, i was looking for new idea that i can implement in Sketchware. I made too many tools in that day & figured that maybe if make a game it will be great and something new to learn for me. Maintaining SH Recovery also became very boring to me. I was looking for an example projects on Sketchware Community page and found nothing i can learn. I realized something that day, i've played a game named CS2D for years since i was a kid. Then i proceeds to learn game developments on Youtube. Nothing i can learn from there because they uses Unity, where i uses Sketchware. The frustation made me ignored the idea for 3 weeks. After that, i came up with an idea of using FrameLayout as the canvas and ImageView(s) as the TileMap _(i was forgot the reasons why i came up with FrameLayout & ImageView lol)_
 
-Then the story begins that day, on 7th february 2020, i started the development, 1 week full coding with 3 hours sleep each day. Until i released the very first version of Sketchware 2D Game Engine on 23 october 2020 on Sketchub. And on December 2024, i decided to make the Github page to prevent this project abandoned again :)
+Then the story begins that day, on 7th february 2020, i started the development, 1 week full coding with 3 hours sleep each day. Until i released the very first version of Sketchware 2D Game Engine on 23 october 2020. And on December 2024, i decided to make the Github page to prevent this project abandoned again :)
 
 ## How It Works
 The engine integrates seamlessly into Sketchware by providing pre-configured blocks and templates that allow developers to:
