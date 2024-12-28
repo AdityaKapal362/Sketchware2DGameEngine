@@ -1,3 +1,6 @@
+> [!NOTE]
+> This library is still under development, some of the codes are not uploaded due to black-grids issue. No release until i fix the issue!
+
 ## Welcome
 **<p>Sketchware 2D Game Engine or S2DGE designed to simplify game development within Sketchware, enabling users to create 2D games.</p>**
 <p>Sketchware 2D Game Engine is a framework or toolkit developed within the constraints of Sketchware, a drag-and-drop app builder for Android. It provided the essential tools and functionalities to build 2D games directly in Sketchware by leveraging the platform's block-based coding environment and custom logic.</p>
