@@ -1,5 +1,5 @@
 > [!NOTE]
-> This library is still under development, some of the codes are not uploaded due to black-grids issue. All the codes also still messy. No release until i fix the issue!
+> This library is still under development, some of the codes are not uploaded due to black-grids issue. All the codes also still messy, im hoping someone can help me fix the black-grids issue on the MainThread.java. No release until i fix the issue!
 
 ## Welcome
 **<p>Sketchware 2D Game Engine or S2DGE designed to simplify game development within Sketchware, enabling users to create 2D games.</p>**
