@@ -9,14 +9,17 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 	FULLY CREATED BY "ADITYAKAPAL362"
 	on ~ 5 August 2020
 	
-	#1 ~ Updated on 23 January 2022
+	#1 ~ Updated on 23 January 2022 -> Migrated to SurfaceView & Canvas
+	=== [Engine version 0.2, map version 1b]
+	
+	#2 ~ Updated on 12 December 2023 -> Major fix
 	=== [Engine version 0.3, map version 1b]
 	
-	#2 ~ Updated on 12 December 2023
-	=== [Engine version 0.4, map version 1b]
+	#3 ~ Updated on 14 October 2024 -> Minor update
+	=== [Engine version 0.4, map version 1c]
 	
-	#3 ~ Updated on 14 October 2024
-	=== [Engine version 0.5, map version 1c]
+	#4 ~ Updated on 29 December 2024 -> Major update
+	=== [Engine version 0.5, map version 1d]
 	
 	##### MUST READ #####
 	
@@ -33,18 +36,15 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 	
 	*/
 			
-	private int mGameState, startX, startY, endX, endY, mapSizeX, mapSizeY, camTileX, camTileY, screenXMax, screenYMax, screenXOffset, screenYOffset, fps, frameCounter = 0;
+	private int mGameState, mapSizeX, mapSizeY, startX, startY, endX, endY, screenXMax, screenYMax, screenXOffset, screenYOffset, fps, touchX, touchY, camX, camY, pixel, pixell = 0;
 	private int STATE_RUNNING = 1;
 	private int STATE_PAUSED = 2;
-	private long currentTime, lastFpsTime = 0;
-	private float mScreenDensity, touchX, touchY, camX, camY, pixel, pixell;
-	private Paint tempPaint, fpsPaint = new Paint();
-	private boolean mGameRun, showPlayersName = true;
+	private Paint fpsPaint = new Paint();
+	private boolean mGameRun = true;
 	private boolean showFps, firstRen, shadow = false;
 	private Point spawn;
 	private SurfaceHolder holder;
 	private OnGenerateListener listener;
-	private Canvas cnvs;
 	private MainThread thread;
 	private Tiles[][] tile;
 	private String gamePath, currentMap, currentMapName;
@@ -54,32 +54,29 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 	private ArrayList<NPC> npcs = new ArrayList<>();
 	private ArrayList<Sprite> spritesData = new ArrayList<>();
 	private ArrayList<ItemSpawned> spawnedItemsData = new ArrayList<>();
-
+	private ShaderV1 shader;
+			
 	public Sketchware2DGameEngine(Context a) {
 		super(a);
-		//setLayerType(View.LAYER_TYPE_HARDWARE, null);
+		shader = new ShaderV1();
 		pixel = 44;
-		pixell = getDen(pixel);
+		pixell = (int) getDen(pixel);
 		setOnTouchListener(this);
 		fpsPaint = new Paint();
 		fpsPaint.setStyle(Paint.Style.FILL);
 		fpsPaint.setColor(Color.WHITE);
 		fpsPaint.setAntiAlias(true);
-		fpsPaint.setTextSize((int)getDen(11));
-		screenXMax = (int) getResources().getDisplayMetrics().widthPixels;
-		screenYMax = (int) getResources().getDisplayMetrics().heightPixels;
-		screenXOffset = (int) (screenXMax/2);
-		screenYOffset = (int) (screenYMax/2);
+		fpsPaint.setTextSize((int)getDen(14));
 		getHolder().addCallback(this);
 	}
-
+			
 	public void surfaceChanged(android.view.SurfaceHolder a, int b, int c, int d) {
 		screenXMax = c;
 		screenYMax = d;
 		screenXOffset = (int) (screenXMax/2);
 		screenYOffset = (int) (screenYMax/2);
-    }
-
+	}
+			
 	public void surfaceCreated(android.view.SurfaceHolder a) {
 		screenXMax = getWidth();
 		screenYMax = getHeight();
@@ -91,7 +88,7 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 			thread.start();
 		}
 	}
-
+	
 	public void surfaceDestroyed(android.view.SurfaceHolder a) {
 		boolean retry = true;
 		thread.setRunning(false);
@@ -104,11 +101,11 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 			}
 		}
 	}
-
+			
 	public void setGameFilePath(String a) {
 		gamePath = a;
 	}
-
+			
 	public void setGenerateListener(OnGenerateListener a) {
 		listener = a;
 	}
@@ -117,72 +114,87 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 		listener.onGenerateStart(0);
 		new GenerateTask().execute(this);
 	}
-
+	
 	public void drawTiles(Canvas a) {
-		startX = Math.max(0, (int) (camX / pixell));
-		startY = Math.max(0, (int) (camY / pixell));
-		endX = Math.min(mapSizeX, (int) ((camX + screenXMax) / pixell + 1));
-		endY = Math.min(mapSizeY, (int) ((camY + screenYMax) / pixell + 1));
-		int kfx = startX;
-		while (startX < endX && startY < endY) {
-			drawTile(a,tile[startX][startY]);
-			startX++;
-			if (startX==endX) {
-				startX = kfx;
-				startY++;
+		startX = Math.max(0, (int) (camX / pixell)-1);
+		startY = Math.max(0, (int) (camY / pixell)-1);
+		endX = Math.min(mapSizeX, (int) ((camX + screenXMax) / pixell + 2));
+		endY = Math.min(mapSizeY, (int) ((camY + screenYMax) / pixell + 2));
+		for (int y = startY; y < endY; y++) {
+			for (int x = startX; x < endX; x++) {
+				drawTile(a, tile[x][y]);
 			}
 		}
-    }
-
+	}
+			
 	public void drawTile(Canvas a, Tiles b) {
-		if (b.tilesId.equals("1")) {
-			a.drawBitmap(tileBitmaps.get(wkwk), null, new RectF(b.x-camX, b.y-camY, b.x-camX+pixell, b.y-camY+pixell), null);
-		} else {
-			a.drawBitmap(b.bitmap, null, new RectF(b.x-camX, b.y-camY, b.x-camX+pixell, b.y-camY+pixell), null);
-		}
-		if (!b.mask.equals("0")) a.drawBitmap(b.maskBitmap, null, new RectF(b.x-camX, b.y-camY, b.x-camX+pixell, b.y-camY+pixell), null);
+		int dX = b.x-camX;
+		int dY = b.y-camY;
+		/*
+		int tX = dX + pixell;
+		int tY = dY + pixell;
+		Rect dstRect = new Rect(dX, dY, tX, tY);
+		Rect dstRect2 = new Rect(dX, dY, tX, tY);
+		// TOO HEAVY FOR LOW END DEVICES, BUT THIS IS PRETTY
+		// EFFICIENT TO USE SO IM GONNA KEEP IT
+		*/
+		a.drawBitmap(b.tilesId.equals("1") ? tileBitmaps.get(wkwk) : b.bitmap, dX, dY, null);
+		if (!b.mask.equals("0")) a.drawBitmap(b.maskBitmap, dX, dY, null);
 	}
-
-	public void drawTile(Canvas a, int b, int c, float d, float e) {
-		if (tile[b][c].tilesId.equals("1")) {
-			a.drawBitmap(tileBitmaps.get(wkwk), null, new RectF(d, e, d+pixell, e+pixell), null);
-		} else {
-			a.drawBitmap(tile[b][c].bitmap, null, new RectF(d, e, d+pixell, e+pixell), null);
-		}
-		if (!tile[b][c].mask.equals("0")) a.drawBitmap(tile[b][c].maskBitmap, null, new RectF(d, e, d+pixell, e+pixell), null);
-	}
-
+			
 	public void drawSpawnedItems(Canvas a) {
 		for (int k = 0; k < spawnedItemsData.size(); k++) {
 			spawnedItemsData.get(k).draw(a, camX, camY);
 		}
 	}
-
+	
 	public void drawSprites(Canvas a) {
-        for (Sprite r : spritesData) {
+		for (Sprite r : spritesData) {
 			r.draw(a, camX, camY);		
 		}
-    }
-
+	}
+			
 	public void drawPlayers(Canvas a) {
 		a.drawBitmap(me.playerBitmap, me.x - camX - me.bodyWidth, me.y - camY - me.bodyHeight, null);
 	}
-
-	public void drawNPCs(Canvas a) {
+			
+	public void drawNPCsUpper(Canvas a) {
 		if (npcs == null) return;
 		for (NPC npc : npcs) {
-			npc.drawBodyAndName(a, camX, camY);
+			if (npc.y <= me.y) npc.drawBodyAndName(a, camX, camY);
 		}
 	}
-
-    public void draw(Canvas a) {
-		a.drawColor(Color.TRANSPARENT);
+			
+	public void drawNPCsLower(Canvas a) {
+		if (npcs == null) return;
+		for (NPC npc : npcs) {
+			if (npc.y > me.y) npc.drawBodyAndName(a, camX, camY);
+		}
+	}
+			
+	public void drawShader(Canvas a) {
+		startX = Math.max(0, (int) (camX / pixell)-1);
+		startY = Math.max(0, (int) (camY / pixell)-1);
+		endX = Math.min(mapSizeX, (int) ((camX + screenXMax) / pixell + 2));
+		endY = Math.min(mapSizeY, (int) ((camY + screenYMax) / pixell + 2));
+		for (int y = startY; y < endY; y++) {
+			for (int x = startX; x < endX; x++) {
+				shader.renderShaders(a,tile[x][y],camX,camY);
+			}
+		}
+	}
+			
+	public void draw(Canvas a) {
 		drawTiles(a);
+		drawNPCsUpper(a);
 		drawPlayers(a);
-		drawNPCs(a);
+		drawNPCsLower(a);
+		drawShader(a);
 		a.drawText(me.playerName, screenXOffset, screenYOffset - 60, me.paint);
-		if (showFps) a.drawText(String.valueOf((int)fps) + " fps", 40, 40, fpsPaint);
-		a.drawText(String.valueOf(endX-startX) + " - " + String.valueOf(endY-startY), 80, 110, fpsPaint);
+		a.drawText(String.valueOf((int)fps) + " fps", 30, 40, fpsPaint);
+		a.drawText(String.valueOf(endX-startX) + " - " + String.valueOf(endY-startY), 30, 100, fpsPaint);
+		a.drawText("x: " + String.valueOf(me.x) + " || y: " + String.valueOf(me.y), 30, 160, fpsPaint);
+		a.drawText("[" + String.valueOf(me.x/pixell) + "," + String.valueOf(me.y/pixell) + "]", 30, 220, fpsPaint);
 	}
 			
 	@Override
@@ -190,52 +202,43 @@ public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder
 		if (firstRen == true) {
 			switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					touchX = event.getX();
-					touchY = event.getY();
-					updatePlayerPosition(event.getX(), event.getY());
-				return true;
+					touchX = (int) event.getX();
+					touchY = (int) event.getY();
+					updatePlayerPosition((int)event.getX(), (int)event.getY());
+					return true;
 				case MotionEvent.ACTION_MOVE:
-				    updatePlayerPosition(event.getX(), event.getY());
-				return true;
-            }
+					updatePlayerPosition((int)event.getX(), (int)event.getY());
+					return true;
+			}
 		}
 		return super.onTouchEvent(event);
 	}
-
-	private void updatePlayerPosition(float x, float y) {
-		try {
-			Thread.sleep(10);
-			if (x < touchX) { me.x -= 3; me.angle = "l"; };
-			if (x > touchX) { me.x += 3; me.angle = "r"; };
-			if (y < touchY) me.y -= 3;
-			if (y > touchY) me.y += 3;
-			me.y-=3;
-			camX = me.x - screenXOffset;
-			camY = me.y - screenYOffset;
-			touchX = x;
-			touchY = y;
-		} catch (Exception e) {
-		}
+			
+	private void updatePlayerPosition(int x, int y) {
+		if (x < touchX) { me.x -= 3; me.angle = "l"; };
+		if (x > touchX) { me.x += 3; me.angle = "r"; };
+		if (y < touchY) me.y -= 3;
+		if (y > touchY) me.y += 3;
+		camX = me.x - screenXOffset;
+		camY = me.y - screenYOffset;
+		touchX = x;
+		touchY = y;
 	}
-
+			
 	public void setShowFPS(boolean a) {
 		showFps = a;
 	}
-
-	public void setShowPlayersName(boolean a) {
-		showPlayersName = a;
-	}
-
+			
 	public void pause() {
 		synchronized (holder) {
 			mGameState = STATE_PAUSED;
 		}
 	}
-
+			
 	public void unpause() {
 		synchronized (holder) {
 			mGameState = STATE_RUNNING;
 		}
 	}
-    
+	
 }

@@ -2,45 +2,52 @@ package com.adityakapal362.2d.game.engine.thread;
 
 public class MainThread extends Thread {
 			
-	public void setFPS(int a) {
-		FPS = a;
-	}
-
-	private int FPS = 60;
 	private final SurfaceHolder surfaceHolder;
 	private Sketchware2DGameEngine gamePanel;
+	private Canvas cvs;
 	private boolean canRun;
-
+	private long startTime, frameTime;
+	private int frame;
+			
 	public MainThread(SurfaceHolder a, Sketchware2DGameEngine b) {
 		surfaceHolder = a;
 		gamePanel = b;
 	}
-
+			
 	@Override
 	public void run() {
 		super.run();
-		Canvas canvas = null;
+		cvs = null;
+		frame = 0;
+		startTime = System.nanoTime();
 		while (canRun) {
-			try {
-				canvas = surfaceHolder.lockHardwareCanvas();
-				if (gamePanel.firstRen) {
+			if (gamePanel.firstRen) {
+				try {
+					cvs = surfaceHolder.lockCanvas();
 					synchronized (surfaceHolder) {
-					    gamePanel.draw(canvas);
+						gamePanel.draw(cvs);
+					}
+				} catch (Exception e) {
+				} finally {
+					if (cvs != null) {
+						surfaceHolder.unlockCanvasAndPost(cvs);
+						//gamePanel.fps++;
 					}
 				}
-			} catch (Exception e) {
-			} finally {
-				if (canvas != null) {
-					surfaceHolder.unlockCanvasAndPost(canvas);
-					gamePanel.fps++;
-				}
 			}
-			try{sleep(10);}catch(Exception e){}
+			frame++;
+			frameTime = System.nanoTime();
+			if (frameTime-startTime >= 1000000000) {
+				frame--;
+				gamePanel.fps = frame;
+				frame = 0;
+				startTime = frameTime;
+			}
 		}
 	}
-
+			
 	public void setRunning(boolean b) {
-	    canRun = b;
+		canRun = b;
 	}
-
+	
 }
