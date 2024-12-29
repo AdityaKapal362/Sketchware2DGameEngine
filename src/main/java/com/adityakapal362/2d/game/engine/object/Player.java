@@ -1,14 +1,13 @@
 package com.adityakapal362.2d.game.engine.object;
 
 public class Player {
-
+			
 	public Paint paint;
 	public Bitmap playerBitmap;
 	public String playerName, playerUid, state, angle;
-	public int tier, bodyWidth, bodyHeight, nameY, anim;
+	public int tier, bodyWidth, bodyHeight, nameY, anim, x, y;
 	public double speed;
-	public float x, y;
-
+			
 	public Player(String a, String b, int c) {
 		x = 0;
 		y = 0;
@@ -24,13 +23,13 @@ public class Player {
 		paint.setStyle(Paint.Style.FILL);
 		paint.setColor(tier == 0 ? Color.WHITE : tier == 1 ? Color.GREEN : tier == 2 ? Color.BLUE : tier == 3 ? Color.RED : Color.WHITE);
 		paint.setAntiAlias(true);
-		paint.setTextSize((int)getDen(8));
+		paint.setTextSize((int)getDen(9));
 		paint.setTextAlign(Paint.Align.CENTER);
 		playerBitmap = surface.spriteBitmaps.get("pl_i_r_1");
 		bodyWidth = (int) (playerBitmap.getWidth() / 2);
 		bodyHeight = (int) (playerBitmap.getHeight() / 2);
-    }
-
+	}
+			
 	public void animate() {
 		anim++;
 		if (anim == 3) playerBitmap = surface.spriteBitmaps.get("pl_" + state + "_" + angle + "_2");
@@ -41,9 +40,9 @@ public class Player {
 			anim = 0;
 		}
 	}
-
-	public void drawBodyAndName(Canvas a, float cx, float cy) {
+			
+	public void drawBodyAndName(Canvas a, int cx, int cy) {
 		a.drawBitmap(playerBitmap, x-bodyWidth-cx, y-bodyHeight-cy, null);
 	}
-
+			
 }

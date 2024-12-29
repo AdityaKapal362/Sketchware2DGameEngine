@@ -1,15 +1,14 @@
 package com.adityakapal362.2d.game.engine.object;
 
 public class Sprite {
-
+				
 	public Bitmap bitmap;
-    public int width, height, halfWidth, halfHeight;
-	public float x, y;
+	public int width, height, halfWidth, halfHeight, x, y;
 	public String hook;
-
+				
 	public Sprite() {
 	}
-
+				
 	public void opt() {
 		width = bitmap.getWidth();
 		height = bitmap.getHeight();
@@ -18,37 +17,37 @@ public class Sprite {
 		x = 0;
 		y = 0;
 	}
-
+				
 	public void set(String path) {
 		bitmap = BitmapFactory.decodeFile(path);
 		opt();
 	}
-
+				
 	public void set(int id) {
 		bitmap = BitmapFactory.decodeResource(GameActivity.this.getResources(), id);
 		opt();
 	}
-
+				
 	public void set(Bitmap newBitmap) {
-        bitmap = Bitmap.createBitmap(newBitmap);
+		bitmap = Bitmap.createBitmap(newBitmap);
 		opt();
 	}
-
+				
 	public void set(Bitmap newBitmap, int b) {
 		bitmap = newBitmap;
 		opt();
 	}
-
+				
 	public void hook(String a) {
 		hook = a;
 	}
-
-	public void draw(Canvas a, float nx, float ny) {
+				
+	public void draw(Canvas a, int nx, int ny) {
 		a.drawBitmap(bitmap, nx, ny, null);
 	}
-
+				
 	private void clean() {
 		if (bitmap != null) { bitmap.recycle(); bitmap = null; };
 	}
-
+				
 }

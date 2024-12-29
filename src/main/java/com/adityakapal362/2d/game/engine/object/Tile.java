@@ -1,14 +1,15 @@
 package com.adityakapal362.2d.game.engine.object;
 
-public class Tiles extends Sprite {
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 
+public class Tile extends Sprite {
+			
 	public int tilesX, tilesY;
 	public String tilesId, tilesType,mask;
 	public Bitmap maskBitmap;
-
-	public Tiles() {
-	}
-
+	public Rect rect;
+			
 	public Tiles(int posX, int posY, String c, String d, String e) {
 		tilesType = d;
 		tilesId = c;
@@ -17,8 +18,9 @@ public class Tiles extends Sprite {
 		mask = e;
 		maskBitmap = e.equals("0") ? null : surface.tileBitmaps.get(e);
 		set(surface.tileBitmaps.get(c), 0);
-		x = getDen((float)tilesX * surface.pixel);
-		y = getDen((float)tilesY * surface.pixel);
+		x = tilesX * surface.pixell;
+		y = tilesY * surface.pixell;
+		rect = new Rect(x,y,x+surface.pixell,y+surface.pixell);
 	}
-
+			
 }

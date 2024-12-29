@@ -1,12 +1,15 @@
 package com.adityakapal362.2d.game.engine;
 
 import android.os.AsyncTask;
+import android.graphics.Bitmap;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.File;
 
-public class GenerateTask extends android.os.AsyncTask <Sketchware2DGameEngine, Void, Sketchware2DGameEngine> {
-	public java.io.BufferedReader f;
+import com.adityakapal362.2d.game.engine.Sketchware2DGameEngine;
+
+public class GenerateTask extends AsyncTask <Sketchware2DGameEngine, Void, Sketchware2DGameEngine> {
+	public BufferedReader f;
 	public int h = 0;
 	public String error = "-";
 	public String[] rwog;
@@ -18,10 +21,10 @@ public class GenerateTask extends android.os.AsyncTask <Sketchware2DGameEngine, 
 	@Override
 	public Sketchware2DGameEngine doInBackground(Sketchware2DGameEngine... i) {
 		try {
-			java.io.File pafr = new java.io.File(i[0].gamePath + "/gfx");
+			File pafr = new File(i[0].gamePath + "/gfx");
 			if (pafr.exists()) {
-				java.io.File[] lf1 = pafr.listFiles();
-				for (java.io.File fl : lf1) {
+				File[] lf1 = pafr.listFiles();
+				for (File fl : lf1) {
 					if (fl.isFile()) {
 						if (getFileName(fl.getAbsolutePath()).length() > 2 && getFileName(fl.getAbsolutePath()).substring(0,3).equals("pl_")) {
 							Bitmap kqpd = BitmapFactory.decodeFile(fl.getAbsolutePath());
@@ -32,27 +35,27 @@ public class GenerateTask extends android.os.AsyncTask <Sketchware2DGameEngine, 
 						}
 					}
 				}
-				pafr = new java.io.File(i[0].gamePath + "/sfx");
+				pafr = new File(i[0].gamePath + "/sfx");
 				if (pafr.exists() && pafr.isDirectory()) {
-					java.io.File[] lf2 = pafr.listFiles();
-					for (java.io.File fl : lf2) {
+					File[] lf2 = pafr.listFiles();
+					for (File fl : lf2) {
 						if (fl.isFile()) {
 							//sfx nya dittt
 						}
 					};
-					pafr = new java.io.File(i[0].gamePath + "/maps");
+					pafr = new File(i[0].gamePath + "/maps");
 					if (pafr.exists() && pafr.isDirectory()) {
-						java.io.File pafr2 = new java.io.File(i[0].gamePath + "/maps/main.s2dge");
+						File pafr2 = new File(i[0].gamePath + "/maps/main.s2dge");
 						if (pafr2.exists() && pafr2.isFile()) {
-							pafr = new java.io.File(i[0].gamePath + "/tiles");
+							pafr = new File(i[0].gamePath + "/tiles");
 							if (pafr.exists() && pafr.isDirectory()) {
-								java.io.File[] lf3 = pafr.listFiles();
-								for (java.io.File fl : lf3) {
+								File[] lf3 = pafr.listFiles();
+								for (File fl : lf3) {
 									if (fl.isFile()) {
 										i[0].tileBitmaps.put(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fl.getAbsolutePath()), i[0].pixell, i[0].pixell, false));
 									}
 								};
-								f = new java.io.BufferedReader(new java.io.InputStreamReader(new java.io.FileInputStream(new java.io.File(i[0].gamePath + "/maps/main.s2dge"))));
+								f = new BufferedReader(new InputStreamReader(new FileInputStream(new File(i[0].gamePath + "/maps/main.s2dge"))));
 								String line = f.readLine();
 								while (line != null){
 									if (line.toString().length() > 0) {
