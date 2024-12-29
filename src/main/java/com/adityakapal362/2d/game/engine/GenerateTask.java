@@ -5,23 +5,23 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.File;
 
-public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketchware2DGameEngine> {
-	public BufferedReader f;
-    public int h = 0;
+public class GenerateTask extends android.os.AsyncTask <Sketchware2DGameEngine, Void, Sketchware2DGameEngine> {
+	public java.io.BufferedReader f;
+	public int h = 0;
 	public String error = "-";
 	public String[] rwog;
-				
+			
 	public String getFileName(String e) {
 		return e.substring(e.lastIndexOf("/")+1, e.lastIndexOf("."));
 	}
-				
+			
 	@Override
 	public Sketchware2DGameEngine doInBackground(Sketchware2DGameEngine... i) {
 		try {
-			File pafr = new File(i[0].gamePath + "/gfx");
+			java.io.File pafr = new java.io.File(i[0].gamePath + "/gfx");
 			if (pafr.exists()) {
-				File[] lf1 = pafr.listFiles();
-				for (File fl : lf1) {
+				java.io.File[] lf1 = pafr.listFiles();
+				for (java.io.File fl : lf1) {
 					if (fl.isFile()) {
 						if (getFileName(fl.getAbsolutePath()).length() > 2 && getFileName(fl.getAbsolutePath()).substring(0,3).equals("pl_")) {
 							Bitmap kqpd = BitmapFactory.decodeFile(fl.getAbsolutePath());
@@ -31,30 +31,30 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 							i[0].spriteBitmaps.put(getFileName(fl.getAbsolutePath()), BitmapFactory.decodeFile(fl.getAbsolutePath()));
 						}
 					}
-				};
-				pafr = new File(i[0].gamePath + "/sfx");
+				}
+				pafr = new java.io.File(i[0].gamePath + "/sfx");
 				if (pafr.exists() && pafr.isDirectory()) {
-					File[] lf2 = pafr.listFiles();
-					for (File fl : lf2) {
+					java.io.File[] lf2 = pafr.listFiles();
+					for (java.io.File fl : lf2) {
 						if (fl.isFile()) {
 							//sfx nya dittt
 						}
 					};
-					pafr = new File(i[0].gamePath + "/maps");
+					pafr = new java.io.File(i[0].gamePath + "/maps");
 					if (pafr.exists() && pafr.isDirectory()) {
-						File pafr2 = new File(i[0].gamePath + "/maps/main.s2dge");
-				        if (pafr2.exists() && pafr2.isFile()) {
-							pafr = new File(i[0].gamePath + "/tiles");
+						java.io.File pafr2 = new java.io.File(i[0].gamePath + "/maps/main.s2dge");
+						if (pafr2.exists() && pafr2.isFile()) {
+							pafr = new java.io.File(i[0].gamePath + "/tiles");
 							if (pafr.exists() && pafr.isDirectory()) {
-								File[] lf3 = pafr.listFiles();
-								for (File fl : lf3) {
-								    if (fl.isFile()) {
-									    i[0].tileBitmaps.put(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fl.getAbsolutePath()), (int)i[0].pixell, (int)i[0].pixell,false));
+								java.io.File[] lf3 = pafr.listFiles();
+								for (java.io.File fl : lf3) {
+									if (fl.isFile()) {
+										i[0].tileBitmaps.put(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fl.getAbsolutePath()), i[0].pixell, i[0].pixell, false));
 									}
-								}
-								f = new BufferedReader(new InputStreamReader(new java.io.FileInputStream(new java.io.File(i[0].gamePath + "/maps/main.s2dge"))));
+								};
+								f = new java.io.BufferedReader(new java.io.InputStreamReader(new java.io.FileInputStream(new java.io.File(i[0].gamePath + "/maps/main.s2dge"))));
 								String line = f.readLine();
-								while(line != null){
+								while (line != null){
 									if (line.toString().length() > 0) {
 										if (line.toString().equals("# DATA")) {
 											h = 1;
@@ -76,8 +76,8 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 											} else if (h == 2) {
 												Sprite tl = new Sprite();
 												tl.set(getResizedBitmap(i[0].spriteBitmaps.get(rwog[2]),Integer.parseInt(rwog[3]),Integer.parseInt(rwog[4]),Integer.parseInt(rwog[5])));
-												tl.x = getDen(Integer.parseInt(rwog[0])*i[0].pixel);
-												tl.y = getDen(Integer.parseInt(rwog[1])*i[0].pixel);
+												tl.x = Integer.parseInt(rwog[0])*i[0].pixell;
+												tl.y = Integer.parseInt(rwog[1])*i[0].pixell;
 												//if (!rwog[7].equals("-")) tl.hook(rwog[7]);
 												i[0].spritesData.add(tl);
 											} else if (h == 3) {
@@ -85,8 +85,6 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 													i[0].spawn = new Point();
 													i[0].spawn.x = Integer.parseInt(rwog[1]);
 													i[0].spawn.y = Integer.parseInt(rwog[2]);
-													i[0].camX = getDen(i[0].spawn.x * i[0].pixel) + i[0].screenXOffset;
-													i[0].camY = getDen(i[0].spawn.y * i[0].pixel) + i[0].screenYOffset;
 												}
 											} else if (h == 5) {
 												if (rwog[0].equals("Name")) {
@@ -101,7 +99,7 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 													}
 												}
 											} else if (h == 6) {
-											    if (i[0].npcs == null) i[0].npcs = new ArrayList<>();
+												if (i[0].npcs == null) i[0].npcs = new ArrayList<>();
 												NPC nn = new NPC(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]);
 												i[0].npcs.add(nn);
 											}
@@ -111,7 +109,7 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 									line = f.readLine();
 								}
 							} else {
-							    error = "Tiles folder not found";
+								error = "Tiles folder not found";
 							}
 						} else {
 							error = "Main map file not found";
@@ -123,20 +121,22 @@ public class GenerateTask extends AsyncTask<Sketchware,2DGameEngine, Void, Sketc
 					error = "SFX folder not found";
 				}
 			} else {
-			    error = "GFX folder not found";
-			};
+				error = "GFX folder not found";
+			}
 		} catch (Exception e) {
 			error = e.toString();
 		}
 		f = null;
 		me = new Player("AdityaKapal362", "UID test", 0);
-		me.x = getDen(i[0].spawn.x * i[0].pixel);
-		me.y = getDen(i[0].spawn.y * i[0].pixel);
+		me.x = i[0].spawn.x * i[0].pixell;
+		me.y = i[0].spawn.y * i[0].pixell;
+		i[0].camX = me.x - i[0].screenXOffset;
+		i[0].camY = me.y - i[0].screenYOffset;
 		return i[0];
 	}
 
 	@Override
-    public void onPostExecute(Sketchware2DGameEngine a) {
+	public void onPostExecute(Sketchware2DGameEngine a) {
 		if (error.equals("-")) {
 			a.firstRen = true;
 			a.listener.onGenerateCompleted();
