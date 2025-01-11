@@ -1,3 +1,5 @@
+[![Android CI](https://github.com/AdityaKapal362/Sketchware2DGameEngine/actions/workflows/android.yml/badge.svg)](https://github.com/AdityaKapal362/Sketchware2DGameEngine/actions/workflows/android.yml)
+
 > [!NOTE]
 > This library is still under development, some of the codes are not uploaded due to black-grids issue. All the codes also still messy, im hoping someone can help me fix the black-grids issue on the `MainThread.java`, or maybe the issue was from drawTiles on `Sketchware2DGameEngine.java`. **No release until i fix the issue!**
 
