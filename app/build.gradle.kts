@@ -9,7 +9,7 @@ android {
     compileSdk = 33
     
     defaultConfig {
-        applicationId = "id.kplay.game.kplaygameengine"
+        applicationId = "id.kplay.sketchware2dgameengine.example"
         minSdk = 21
         targetSdk = 33
         versionCode = 1

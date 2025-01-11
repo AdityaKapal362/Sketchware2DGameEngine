@@ -1,4 +1,4 @@
-package id.kplay.game.kplaygameengine;
+package id.kplay.sketchware2dgameengine.example;
 
 import android.app.Activity;
 import android.os.Bundle;
