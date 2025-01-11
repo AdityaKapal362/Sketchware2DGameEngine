@@ -1,5 +1,5 @@
 <manifest
-    xmlns:android="hublaaa"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.kplay.game.engine"
 
     <application
