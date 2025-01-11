@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "id.kplay.game.kplaygameengine"
+    namespace = "id.kplay.sketchware2dgameengine.example"
     compileSdk = 33
     
     defaultConfig {
