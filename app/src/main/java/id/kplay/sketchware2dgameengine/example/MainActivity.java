@@ -2,7 +2,6 @@ package id.kplay.sketchware2dgameengine.example;
 
 import android.app.Activity;
 import android.os.Bundle;
-import id.kplay.sketchware2dgameengine.example.databinding.ActivityMainBinding;
 
 public class MainActivity extends Activity {
 	
@@ -11,13 +10,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		    binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        //setContentView(binding.getRoot());
     }
     
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.binding = null;
     }
 }
