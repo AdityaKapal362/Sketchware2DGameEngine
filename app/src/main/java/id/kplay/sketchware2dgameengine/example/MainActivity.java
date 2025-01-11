@@ -5,8 +5,6 @@ import android.os.Bundle;
 
 public class MainActivity extends Activity {
 	
-	  private ActivityMainBinding binding;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
