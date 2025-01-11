@@ -2,7 +2,7 @@ package id.kplay.sketchware2dgameengine.example;
 
 import android.app.Activity;
 import android.os.Bundle;
-import id.kplay.game.kplaygameengine.databinding.ActivityMainBinding;
+import id.kplay.sketchware2dgameengine.example.databinding.ActivityMainBinding;
 
 public class MainActivity extends Activity {
 	
