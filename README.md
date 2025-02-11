@@ -44,7 +44,7 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 - [x] Animated Player & Movements
 - [ ] Collisions feature
 - [ ] Basic Physics
-- [ ] Fix Black-grids issue
+- [x] Fix Black-grids issue
 - [x] Optimized Render on Thread
 - [x] Firebase Database Support
 - [ ] Interactive NPCs
