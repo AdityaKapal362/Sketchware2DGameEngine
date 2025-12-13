@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import com.adityakapal362.s2dge.Sketchware2DGameEngine;
+import com.adityakapal362.s2dge.util.Sprite;
+import com.adityakapal362.s2dge.util.Tiles;
 
 public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sketchware2DGameEngine> {
 		public BufferedReader f;
@@ -80,7 +82,7 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 											} else if (line.toString().length() > 6) {
 												rwog = line.toString().trim().split(" ");
 												if (h == 1) {
-													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]);
+													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4], i[0].tileBitmaps.get(rwog[2]), rwog[4].equals("0") ? null : i[0].tileBitmaps.get(rwog[4]));
 												} else if (h == 2) {
 													Sprite tl = new Sprite();
 													tl.set(getResizedBitmap(i[0].spriteBitmaps.get(rwog[2]),Integer.parseInt(rwog[3]),Integer.parseInt(rwog[4]),Integer.parseInt(rwog[5])));
@@ -135,11 +137,11 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 				error = e.toString();
 			};
 			f = null;
-			me = new Player("-", "UID test", 0);
-			me.x = i[0].spawn.x * i[0].pixell;
-			me.y = i[0].spawn.y * i[0].pixell;
-			i[0].camX = me.x - i[0].screenXOffset;
-			i[0].camY = me.y - i[0].screenYOffset;
+			//me = new Player("-", "UID test", 0);
+			//me.x = i[0].spawn.x * i[0].pixell;
+			//me.y = i[0].spawn.y * i[0].pixell;
+			//i[0].camX = me.x - i[0].screenXOffset;
+			//i[0].camY = me.y - i[0].screenYOffset;
 			return i[0];
 		}
 		@Override
