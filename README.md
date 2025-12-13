@@ -37,12 +37,13 @@ Ofc its empty, dont ask me when to release, but ask me "can i join the developme
 
 ## Development (v.0.5)
 - [x] Migrated to Canvas & SurfaceView
+- [x] New Generate Engine
 - [x] Animated TileMap
 - [x] Multi-layer TileMap
 - [ ] TileMap Shaders
 - [x] Multiplayer Support
 - [x] Animated Player & Movements
-- [ ] Collisions feature
+- [x] Collisions feature
 - [ ] Basic Physics
 - [x] Fix Black-grids issue
 - [x] Optimized Render on Thread
