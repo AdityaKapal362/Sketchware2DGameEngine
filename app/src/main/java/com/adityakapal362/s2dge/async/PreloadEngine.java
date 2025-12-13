@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.Matrix;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -155,4 +156,39 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 				a.listener.onLoadFailed(error);
 			}
 		}
+
+        public int getDen(int a) {
+		    return (int)(a * 2.5f);
+	    }
+	
+	    public int getDen(float a) {
+		    return (int)(a * 2.5f);
+	    }
+	
+	    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight, int rotate) {
+		float width = bm.getWidth();
+		float height = bm.getHeight();
+		float scaleWidth = ((float) newWidth) / width;
+		float scaleHeight = ((float) newHeight) / height;
+		Matrix matrix = new Matrix();
+		matrix.setRotate(rotate,width/2,height/2);
+		matrix.postScale(scaleWidth, scaleHeight);
+		return Bitmap.createBitmap( bm, 0, 0, (int)width, (int)height, matrix, false);
+	}
+	
+	public Bitmap getResizedBitmap(Bitmap bm, float newWidth, float newHeight, int rotate) {
+		float width = bm.getWidth();
+		float height = bm.getHeight();
+		float scaleWidth = newWidth / width;
+		float scaleHeight = newHeight / height;
+		Matrix matrix = new Matrix();
+		matrix.setRotate(rotate,width/2,height/2);
+		matrix.postScale(scaleWidth, scaleHeight);
+		return Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, matrix, false);
+	}
+	
+	public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+		return Bitmap.createScaledBitmap(bm, newWidth, newHeight, true);
+	}
+
 	}
