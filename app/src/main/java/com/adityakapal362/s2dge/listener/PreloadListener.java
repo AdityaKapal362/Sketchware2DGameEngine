@@ -1,6 +1,6 @@
 package com.adityakapal362.s2dge.listener;
 
-interface OnPreloadListener {
+interface PreloadListener {
 	void onLoadStart(int max);
 	void onLoadProgress(int progress);
 	void onLoadCompleted();

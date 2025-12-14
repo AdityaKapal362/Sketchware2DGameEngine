@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import com.adityakapal362.s2dge.Sketchware2DGameEngine;
 import com.adityakapal362.s2dge.util.Sprite;
 import com.adityakapal362.s2dge.util.Tiles;
+import com.adityakapal362.s2dge.util.Player;
+import com.adityakapal362.s2dge.util.NPC;
+import com.adityakapal362.s2dge.util.NPCS;
 
 public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sketchware2DGameEngine> {
 		public BufferedReader f;
@@ -83,7 +86,7 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 											} else if (line.toString().length() > 6) {
 												rwog = line.toString().trim().split(" ");
 												if (h == 1) {
-													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4], i[0].getTileBitmap(rwog[2]), rwog[4].equals("0") ? null : i[0].getTileBitmap(rwog[4]));
+													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4], i[0].getTileBitmap(rwog[2]), rwog[4].equals("0") ? null : i[0].getTileBitmap(rwog[4]), i[0].getTileSize());
 												} else if (h == 2) {
 													Sprite tl = new Sprite();
 													tl.set(getResizedBitmap(i[0].getBitmap(rwog[2]),Integer.parseInt(rwog[3]),Integer.parseInt(rwog[4]),Integer.parseInt(rwog[5])));
@@ -136,11 +139,11 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 				error = e.toString();
 			};
 			f = null;
-			me = new Player(0, 0, "-", "UID test", 0);
-			me.x = i[0].getSpawnX() * i[0].getTileSize();
-			me.y = i[0].getSpawnY() * i[0].getTileSize();
-			i[0].setCamX(me.x - i[0].getScreenXOffset());
-			i[0].setCamY(me.y - i[0].getScreenYOffset());
+			i[0].me = new Player(0, 0, "-", "UID test", 0);
+			i[0].me.x = i[0].getSpawnX() * i[0].getTileSize();
+			i[0].me.y = i[0].getSpawnY() * i[0].getTileSize();
+			i[0].setCamX(i[0].me.x - i[0].getScreenXOffset());
+			i[0].setCamY(i[0].me.y - i[0].getScreenYOffset());
 			return i[0];
 		}
 		@Override

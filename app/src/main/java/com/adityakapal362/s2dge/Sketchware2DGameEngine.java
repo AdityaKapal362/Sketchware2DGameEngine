@@ -18,7 +18,6 @@ import java.util.HashMap;
 import com.adityakapal362.s2dge.thread.MainThread;
 import com.adityakapal362.s2dge.async.PreloadEngine;
 import com.adityakapal362.s2dge.async.VsyncPacer;
-import com.adityakapal362.s2dge.listener.OnPreloadListener;
 import com.adityakapal362.s2dge.listener.PreloadListener;
 import com.adityakapal362.s2dge.util.Sprite;
 import com.adityakapal362.s2dge.util.Tiles;
@@ -72,7 +71,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 
 */	
 		
-		private int mGameState, mapSizeX, mapSizeY, startX, startY, endX, endY, screenXMax, screenYMax, screenXOffset, screenYOffset, fps, touchX, touchY, camX, camY, pixel, pixell = 0;
+		private int mGameState, mapSizeX, mapSizeY, startX, startY, endX, endY, screenXMax, screenYMax, screenXOffset, screenYOffset, touchX, touchY, camX, camY, pixel, pixell = 0;
 		private int STATE_RUNNING = 1;
 		private int STATE_PAUSED = 2;
 		private Paint fpsPaint = new Paint();
@@ -80,7 +79,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		private boolean showFps, firstRen, shadow = false;
 		private Point spawn;
 		private SurfaceHolder holder;
-		public OnPreloadListener listener;
+		public PreloadListener listener;
 		public MainThread thread;
 		public Tiles[][] tile;
 		private String gamePath, currentMap, currentMapName;
@@ -96,7 +95,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		public S2DGELoadingBar ldbar;
 		public Player me;
 		public NPCS npc;
-		public int reqMX, reqMY, reqAM = 0;
+		public int reqMX, reqMY, reqAM, fps = 0;
 
 		public Sketchware2DGameEngine(Context a) {
 			super(a);

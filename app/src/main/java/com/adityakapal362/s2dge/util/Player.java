@@ -2,10 +2,11 @@ package com.adityakapal362.s2dge.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 public class Player extends Sprite {
-    public int x, y, bodyWidth, bodyHeight, angle;
-    public String playerName, playerId;
+    public int x, y, bodyWidth, bodyHeight;
+    public String playerName, playerId, angle;
     public Bitmap playerBitmap;
     public Paint paint;
     public Rect ghostHitbox;

@@ -10,7 +10,6 @@ public class AnimatedTiles extends Tiles {
     public int frameTicker = 0;
     
     public AnimatedTiles() {
-        super();
     }
     
     public void update() {
