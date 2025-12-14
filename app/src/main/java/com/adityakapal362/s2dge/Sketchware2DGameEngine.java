@@ -15,12 +15,18 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.adityakapal362.s2dge.core.MainThread;
-import com.adityakapal362.s2dge.core.PreloadEngine;
-import com.adityakapal362.s2dge.core.VsyncPacer;
-import com.adityakapal362.s2dge.interfaces.OnPreloadListener;
+import com.adityakapal362.s2dge.thread.MainThread;
+import com.adityakapal362.s2dge.async.PreloadEngine;
+import com.adityakapal362.s2dge.async.VsyncPacer;
+import com.adityakapal362.s2dge.listener.OnPreloadListener;
 import com.adityakapal362.s2dge.util.Sprite;
 import com.adityakapal362.s2dge.util.Tiles;
+import com.adityakapal362.s2dge.util.NPC;
+import com.adityakapal362.s2dge.util.NPCS;
+import com.adityakapal362.s2dge.util.ItemSpawned;
+import com.adityakapal362.s2dge.util.ShaderV1;
+import com.adityakapal362.s2dge.animation.S2DGELoadingBar;
+
 
 public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener {
 		
