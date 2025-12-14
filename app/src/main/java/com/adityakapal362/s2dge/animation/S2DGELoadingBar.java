@@ -37,12 +37,12 @@ public class S2DGELoadingBar {
 			glowPaint.setColor(Color.WHITE);
 			glowPaint.setAntiAlias(true);
 			glowPaint.setMaskFilter(new BlurMaskFilter(12, BlurMaskFilter.Blur.NORMAL));
-			barWidth = (int)(a.screenXMax * 0.3f);
+			barWidth = (int)(a.getSizeX() * 0.3f);
 			barHeight = 20;
-			xmax = a.screenXMax;
-			ymax = a.screenYMax;
-			cx = a.screenXMax / 2;
-			cy = a.screenYMax - 100;
+			xmax = a.getSizeX();
+			ymax = a.getSizeY();
+			cx = a.getSizeX() / 2;
+			cy = a.getSizeY() - 100;
 			left = cx - barWidth / 2;
 			top = cy - barHeight / 2;
 			right = left + barWidth;

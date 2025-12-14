@@ -1,5 +1,7 @@
 package com.adityakapal362.s2dge.animation;
 
+import com.adityakapal362.s2dge.util.Tiles;
+
 public class AnimatedTiles extends Tiles {
     
     public int frameCount = 1;

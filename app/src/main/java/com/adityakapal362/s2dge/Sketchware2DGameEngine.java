@@ -80,9 +80,9 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		private boolean showFps, firstRen, shadow = false;
 		private Point spawn;
 		private SurfaceHolder holder;
-		private OnPreloadListener listener;
-		private MainThread thread;
-		private Tiles[][] tile;
+		public OnPreloadListener listener;
+		public MainThread thread;
+		public Tiles[][] tile;
 		private String gamePath, currentMap, currentMapName;
 		private HashMap<String, Bitmap> tileBitmaps = new HashMap<>();
 		private HashMap<String, Bitmap> spriteBitmaps = new HashMap<>();
@@ -92,8 +92,8 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		private ArrayList<ItemSpawned> spawnedItemsData = new ArrayList<>();
 		private ShaderV1 shader;
 		private VsyncPacer pacer = new VsyncPacer();
-		private S2DGELoadingBar ldbar;
 		private AnimatedTiles animtiles = new AnimatedTiles();
+		public S2DGELoadingBar ldbar;
 		public Player me;
 		public NPCS npc;
 		public int reqMX, reqMY, reqAM = 0;
@@ -109,8 +109,108 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 			fpsPaint.setColor(Color.WHITE);
 			fpsPaint.setAntiAlias(true);
 			fpsPaint.setTextSize((int)getDen(14));
-			npcs = new NPCS(a, this);
+			npc = new NPCS(a, this);
 			getHolder().addCallback(this);
+		}
+
+		public int getSizeX() {
+			return screenXMax;
+		}
+
+		public int getSizeY() {
+			return screenYMax;
+		}
+
+		public int getScreenXOffset() {
+			return screenXOffset;
+		}
+
+		public int getScreenYOffset() {
+			return screenYOffset;
+		}
+
+		public Bitmap getBitmap(String a) {
+			return spriteBitmaps.get(a);
+		}
+
+		public Bitmap getTileBitmap(String a) {
+			return tileBitmaps.get(a);
+		}
+
+		public int getTileSize() {
+			return pixell;
+		}
+
+		public String getGamePath() {
+			return gamePath;
+		}
+
+		public void putSprite(String a, Bitmap b) {
+			spriteBitmaps.put(a, b);
+		}
+
+		public void putTile(String a, Bitmap b) {
+			tileBitmaps.put(a, b);
+		}
+
+		public void addSpriteData(Sprite a) {
+			spritesData.add(a);
+		}
+
+		public void newSpawnPoint() {
+			spawn = new Point();
+		}
+
+		public void setSpawnX(int a) {
+			spawn.x = a;
+		}
+
+		public void setSpawnY(int a) {
+			spawn.y = a;
+		}
+
+		public int getSpawnX() {
+			return spawn.x;
+		}
+
+		public int getSpawnY() {
+			return spawn.y;
+		}
+
+		public void setCurrentMapName(String a) {
+			currentMapName = a;
+		}
+
+		public void setCurrentMapSizeX(int a) {
+			mapSizeX = a;
+		}
+
+		public void setCurrentMapSizeY(int a) {
+			mapSizeY = a;
+		}
+
+		public int getMapSizeX() {
+			return mapSizeX;
+		}
+
+		public int getMapSizeY() {
+			return mapSizeY;
+		}
+
+		public void setCamX(int a) {
+			camX = a;
+		}
+
+		public void setCamY(int a) {
+			camY = a;
+		}
+
+		public void setFirstRender(boolean a) {
+			firstRen = a;
+		}
+
+		public setThreadRunning(boolean a) {
+			thread.setRunning(a);
 		}
 		
 		public void start() {

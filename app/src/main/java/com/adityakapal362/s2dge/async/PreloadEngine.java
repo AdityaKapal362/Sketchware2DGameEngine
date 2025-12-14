@@ -29,21 +29,21 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 		@Override
 		public Sketchware2DGameEngine doInBackground(Sketchware2DGameEngine... i) {
 			try {
-				File pafr = new File(i[0].gamePath + "/gfx");
+				File pafr = new File(i[0].getGamePath() + "/gfx");
 				if (pafr.exists()) {
 					File[] lf1 = pafr.listFiles();
 					for (File fl : lf1) {
 						if (fl.isFile()) {
 							if (getFileName(fl.getAbsolutePath()).length() > 2 && getFileName(fl.getAbsolutePath()).substring(0,3).equals("pl_")) {
 								Bitmap kqpd = BitmapFactory.decodeFile(fl.getAbsolutePath());
-								i[0].spriteBitmaps.put(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(kqpd, (int)getDen(kqpd.getWidth()*2f), (int)getDen(kqpd.getHeight()*2f), false));
+								i[0].putSprite(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(kqpd, (int)getDen(kqpd.getWidth()*2f), (int)getDen(kqpd.getHeight()*2f), false));
 								kqpd = null;
 							} else {
-								i[0].spriteBitmaps.put(getFileName(fl.getAbsolutePath()), BitmapFactory.decodeFile(fl.getAbsolutePath()));
+								i[0].putSprite(getFileName(fl.getAbsolutePath()), BitmapFactory.decodeFile(fl.getAbsolutePath()));
 							}
 						}
 					};
-					pafr = new File(i[0].gamePath + "/sfx");
+					pafr = new File(i[0].getGamePath() + "/sfx");
 					if (pafr.exists() && pafr.isDirectory()) {
 						File[] lf2 = pafr.listFiles();
 						for (File fl : lf2) {
@@ -51,19 +51,19 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 								//sfx nya dittt
 							}
 						};
-						pafr = new File(i[0].gamePath + "/maps");
+						pafr = new File(i[0].getGamePath() + "/maps");
 						if (pafr.exists() && pafr.isDirectory()) {
-							File pafr2 = new File(i[0].gamePath + "/maps/main.s2dge");
+							File pafr2 = new File(i[0].getGamePath() + "/maps/main.s2dge");
 							if (pafr2.exists() && pafr2.isFile()) {
-								pafr = new File(i[0].gamePath + "/tiles");
+								pafr = new File(i[0].getGamePath() + "/tiles");
 								if (pafr.exists() && pafr.isDirectory()) {
 									File[] lf3 = pafr.listFiles();
 									for (File fl : lf3) {
 										if (fl.isFile()) {
-											i[0].tileBitmaps.put(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fl.getAbsolutePath()), i[0].pixell, i[0].pixell, false));
+											i[0].putTile(getFileName(fl.getAbsolutePath()), Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fl.getAbsolutePath()), i[0].getTileSize(), i[0].getTileSize(), false));
 										}
 									};
-									f = new BufferedReader(new InputStreamReader(new FileInputStream(new File(i[0].gamePath + "/maps/main.s2dge"))));
+									f = new BufferedReader(new InputStreamReader(new FileInputStream(new File(i[0].getGamePath() + "/maps/main.s2dge"))));
 									String line = f.readLine();
 									while(line != null){
 										if (line.toString().length() > 0) {
@@ -83,30 +83,30 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 											} else if (line.toString().length() > 6) {
 												rwog = line.toString().trim().split(" ");
 												if (h == 1) {
-													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4], i[0].tileBitmaps.get(rwog[2]), rwog[4].equals("0") ? null : i[0].tileBitmaps.get(rwog[4]));
+													i[0].tile[Integer.parseInt(rwog[0])][Integer.parseInt(rwog[1])] = new Tiles(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4], i[0].getTileBitmap(rwog[2]), rwog[4].equals("0") ? null : i[0].getTileBitmap(rwog[4]));
 												} else if (h == 2) {
 													Sprite tl = new Sprite();
-													tl.set(getResizedBitmap(i[0].spriteBitmaps.get(rwog[2]),Integer.parseInt(rwog[3]),Integer.parseInt(rwog[4]),Integer.parseInt(rwog[5])));
-													tl.x = Integer.parseInt(rwog[0])*i[0].pixell;
-													tl.y = Integer.parseInt(rwog[1])*i[0].pixell;
+													tl.set(getResizedBitmap(i[0].getBitmap(rwog[2]),Integer.parseInt(rwog[3]),Integer.parseInt(rwog[4]),Integer.parseInt(rwog[5])));
+													tl.x = Integer.parseInt(rwog[0])*i[0].getTileSize();
+													tl.y = Integer.parseInt(rwog[1])*i[0].getTileSize();
 													//if (!rwog[7].equals("-")) tl.hook(rwog[7]);
-													i[0].spritesData.add(tl);
+													i[0].addSpriteData(tl);
 												} else if (h == 3) {
 													if (rwog[0].equals("Spawn")) {
-														i[0].spawn = new Point();
-														i[0].spawn.x = Integer.parseInt(rwog[1]);
-														i[0].spawn.y = Integer.parseInt(rwog[2]);
+														i[0].newSpawnPoint();
+														i[0].setSpawnX(Integer.parseInt(rwog[1]));
+														i[0].setSpawnY(Integer.parseInt(rwog[2]));
 													}
 												} else if (h == 5) {
 													if (rwog[0].equals("Name")) {
-														i[0].currentMapName = rwog[1];
+														i[0].setCurrentMapName(rwog[1]);
 													} else if (rwog[0].equals("Size")) {
-														i[0].mapSizeX = Integer.parseInt(rwog[1]);
-														i[0].mapSizeY = Integer.parseInt(rwog[2]);
-														if (i[0].mapSizeX <= 0 || i[0].mapSizeY <= 0) {
+														i[0].setCurrentMapSizeX(Integer.parseInt(rwog[1]));
+														i[0].setCurrentMapSizeY(Integer.parseInt(rwog[2]));
+														if (i[0].getMapSizeX() <= 0 || i[0].getMapSizeY() <= 0) {
 															error = "Map row or column cannot be 0 or lower";
 														} else {
-															i[0].tile = new Tiles[i[0].mapSizeX][i[0].mapSizeY];
+															i[0].tile = new Tiles[i[0].getMapSizeX()][i[0].getMapSizeY()];
 														}
 													}
 												} else if (h == 6) {
@@ -137,17 +137,17 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 			};
 			f = null;
 			me = new Player(0, 0, "-", "UID test", 0);
-			me.x = i[0].spawn.x * i[0].pixell;
-			//me.y = i[0].spawn.y * i[0].pixell;
-			//i[0].camX = me.x - i[0].screenXOffset;
-			//i[0].camY = me.y - i[0].screenYOffset;
+			me.x = i[0].getSpawnX() * i[0].getTileSize();
+			me.y = i[0].getSpawnY() * i[0].getTileSize();
+			i[0].setCamX(me.x - i[0].getScreenXOffset());
+			i[0].setCamY(me.y - i[0].getScreenYOffset());
 			return i[0];
 		}
 		@Override
 		public void onPostExecute(Sketchware2DGameEngine a) {
 			if (error.equals("-")) {
-				a.firstRen = true;
-                a.thread.setRunning(true);
+				a.setFirstRender(true);
+                a.setThreadRunning(true);
 				a.start();
 				a.listener.onLoadCompleted();
 			} else {

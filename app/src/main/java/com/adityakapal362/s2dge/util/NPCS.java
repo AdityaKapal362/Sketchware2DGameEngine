@@ -17,11 +17,6 @@ public class NPCS {
     private int npcANIM_ID = 0;
     public Sketchware2DGameEngine surface;
 
-    public static synchronized NPCS getInstance(Context a) {
-        if (instance == null) instance = new NPCS(a.getApplicationContext());
-        return instance;
-    }
-
     public NPCS(Context a, Sketchware2DGameEngine b) {
         npcList = new ArrayList<>();
         npcBitmaps = new HashMap<>();
@@ -30,7 +25,7 @@ public class NPCS {
     public void animateNPCS() {
         npcANIM_ID++;
         for (NPC npc : npcList) {
-            npc.set(surface.spriteBitmaps.get("pl_i_r_" + (npcANIM_ID / 4)));
+            npc.set(surface.getBitmap("pl_i_r_" + (npcANIM_ID / 4)));
         }
         if (npcANIM_ID >= 16) npcANIM_ID = 0;
     }
@@ -42,9 +37,9 @@ public class NPCS {
     }
 
     public void addNPC(NPC npc) {
-        npc.set(surface.spriteBitmaps.get("pl_i_r_1"));
-        npc.x = npc.tx * surface.tileSize;
-        npc.y = npc.ty * surface.tileSize;
+        npc.set(surface.getBitmap("pl_i_r_1"));
+        npc.x = npc.tx * surface.getTileSize();
+        npc.y = npc.ty * surface.getTileSize();
         npc.bodyWidth = (int) (npc.bitmap.getWidth() / 2);
 		npc.bodyHeight = (int) (npc.bitmap.getHeight() / 2);
         npcList.add(npc);
