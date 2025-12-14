@@ -99,7 +99,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 
 		public Sketchware2DGameEngine(Context a) {
 			super(a);
-			//shader = new ShaderV1();
+			shader = new ShaderV1();
 			pixel = 32;
 			pixell = (int) getDen(pixel);
 			setOnTouchListener(this);

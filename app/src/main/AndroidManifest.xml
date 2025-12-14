@@ -18,5 +18,11 @@
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="id.kplay.sketchware2dgameengine.example.GameActivity" 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:hardwareAccelerated="true"
+            android:exported="false" />
     </application>
 </manifest>
