@@ -33,7 +33,7 @@ public class GameActivity extends Activity {
                 }
             });
         game.setLayoutParams(new LinearLayout.LayoutParams(-1,-1));
-        game.setShowFps(true);
+        game.setShowFPS(true);
         setContentView(game);
         game.startEngine();
     }
