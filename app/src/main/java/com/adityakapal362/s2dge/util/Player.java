@@ -15,4 +15,8 @@ public class Player extends Sprite {
         bodyHeight = f;
         set(d, 0);
     }
+
+    public void update() {
+        
+    }
 }
