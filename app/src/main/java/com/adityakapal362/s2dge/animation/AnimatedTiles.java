@@ -2,7 +2,7 @@ package com.adityakapal362.s2dge.animation;
 
 import com.adityakapal362.s2dge.util.Tiles;
 
-public class AnimatedTiles extends Tiles {
+public class AnimatedTiles {
     
     public int frameCount = 1;
     public int currentFrame = 0;

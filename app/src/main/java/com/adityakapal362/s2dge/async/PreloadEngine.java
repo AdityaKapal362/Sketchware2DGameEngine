@@ -113,7 +113,7 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 														}
 													}
 												} else if (h == 6) {
-													i[0].addNPC(new NPC(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]));
+													i[0].npc.addNPC(new NPC(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]));
 												}
 												rwog = null;
 											}
@@ -139,7 +139,7 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 				error = e.toString();
 			};
 			f = null;
-			i[0].me = new Player(0, 0, "-", "UID test", 0);
+			i[0].me = new Player(0, 0, "-", "UID test", null, 0, 0);
 			i[0].me.x = i[0].getSpawnX() * i[0].getTileSize();
 			i[0].me.y = i[0].getSpawnY() * i[0].getTileSize();
 			i[0].setCamX(i[0].me.x - i[0].getScreenXOffset());
