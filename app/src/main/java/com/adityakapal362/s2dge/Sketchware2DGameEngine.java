@@ -209,7 +209,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 			firstRen = a;
 		}
 
-		public setThreadRunning(boolean a) {
+		public void setThreadRunning(boolean a) {
 			thread.setRunning(a);
 		}
 		
