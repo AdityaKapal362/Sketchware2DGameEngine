@@ -3,6 +3,7 @@ package com.adityakapal362.s2dge.util;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Canvas;
 
 public class NPC extends Sprite {
 

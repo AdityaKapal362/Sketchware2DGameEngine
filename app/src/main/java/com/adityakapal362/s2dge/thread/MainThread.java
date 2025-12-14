@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 import com.adityakapal362.s2dge.Sketchware2DGameEngine;
+import com.adityakapal362.s2dge.async.VsyncPacer;
 
 public class MainThread extends Thread {
 		

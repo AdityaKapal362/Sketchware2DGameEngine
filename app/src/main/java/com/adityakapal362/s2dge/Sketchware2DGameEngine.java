@@ -19,14 +19,16 @@ import com.adityakapal362.s2dge.thread.MainThread;
 import com.adityakapal362.s2dge.async.PreloadEngine;
 import com.adityakapal362.s2dge.async.VsyncPacer;
 import com.adityakapal362.s2dge.listener.OnPreloadListener;
+import com.adityakapal362.s2dge.listener.PreloadListener;
 import com.adityakapal362.s2dge.util.Sprite;
 import com.adityakapal362.s2dge.util.Tiles;
 import com.adityakapal362.s2dge.util.NPC;
 import com.adityakapal362.s2dge.util.NPCS;
 import com.adityakapal362.s2dge.util.ItemSpawned;
 import com.adityakapal362.s2dge.util.ShaderV1;
+import com.adityakapal362.s2dge.util.Player;
 import com.adityakapal362.s2dge.animation.S2DGELoadingBar;
-
+import com.adityakapal362.s2dge.animation.AnimatedTiles;
 
 public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener {
 		
@@ -91,6 +93,8 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		private ShaderV1 shader;
 		private VsyncPacer pacer = new VsyncPacer();
 		private S2DGELoadingBar ldbar;
+		private AnimatedTiles animtiles = new AnimatedTiles();
+		public Player me;
 		public NPCS npc;
 		public int reqMX, reqMY, reqAM = 0;
 
@@ -105,7 +109,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 			fpsPaint.setColor(Color.WHITE);
 			fpsPaint.setAntiAlias(true);
 			fpsPaint.setTextSize((int)getDen(14));
-			npcs = new NPCS(a);
+			npcs = new NPCS(a, this);
 			getHolder().addCallback(this);
 		}
 		
@@ -175,7 +179,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 			int dX = b.x-camX;
 			int dY = b.y-camY;
 			if (b.tilesId.equals("1")) {
-				a.drawBitmap(tileBitmaps.get(wkwk), dX, dY, null);
+				a.drawBitmap(tileBitmaps.get(animtiles.currentFrame), dX, dY, null);
 			} else {
 				a.drawBitmap(b.bitmap, dX, dY, null);
 			}
@@ -306,4 +310,12 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 				mGameState = STATE_RUNNING;
 			}
 		}
+
+		public int getDen(int a) {
+		    return (int)(a * 2.5f);
+	    }
+	
+	    public int getDen(float a) {
+		    return (int)(a * 2.5f);
+	    }
 	}

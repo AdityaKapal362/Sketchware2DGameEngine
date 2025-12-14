@@ -2,6 +2,7 @@ package com.adityakapal362.s2dge.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 
 public class Sprite {
 		

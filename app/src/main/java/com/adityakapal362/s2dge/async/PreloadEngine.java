@@ -136,8 +136,8 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 				error = e.toString();
 			};
 			f = null;
-			//me = new Player("-", "UID test", 0);
-			//me.x = i[0].spawn.x * i[0].pixell;
+			me = new Player(0, 0, "-", "UID test", 0);
+			me.x = i[0].spawn.x * i[0].pixell;
 			//me.y = i[0].spawn.y * i[0].pixell;
 			//i[0].camX = me.x - i[0].screenXOffset;
 			//i[0].camY = me.y - i[0].screenYOffset;
