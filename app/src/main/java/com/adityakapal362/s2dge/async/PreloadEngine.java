@@ -110,9 +110,7 @@ public class PreloadEngine extends AsyncTask <Sketchware2DGameEngine, Void, Sket
 														}
 													}
 												} else if (h == 6) {
-													if (i[0].npcs == null) i[0].npcs = new ArrayList<>();
-													NPC nn = new NPC(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]);
-													i[0].npcs.add(nn);
+													i[0].addNPC(new NPC(Integer.parseInt(rwog[0]), Integer.parseInt(rwog[1]), rwog[2], rwog[3], rwog[4]));
 												}
 												rwog = null;
 											}

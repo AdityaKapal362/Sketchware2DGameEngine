@@ -15,6 +15,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.adityakapal362.s2dge.core.MainThread;
+import com.adityakapal362.s2dge.core.PreloadEngine;
+import com.adityakapal362.s2dge.core.VsyncPacer;
+import com.adityakapal362.s2dge.interfaces.OnPreloadListener;
+import com.adityakapal362.s2dge.util.Sprite;
+import com.adityakapal362.s2dge.util.Tiles;
+
 public class Sketchware2DGameEngine extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener {
 		
 		/*
@@ -78,6 +85,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 		private ShaderV1 shader;
 		private VsyncPacer pacer = new VsyncPacer();
 		private S2DGELoadingBar ldbar;
+		public NPCS npc;
 		public int reqMX, reqMY, reqAM = 0;
 
 		public Sketchware2DGameEngine(Context a) {
@@ -91,6 +99,7 @@ IF I FIND SOMEONE DO THINGS WHICH NOT ALLOWED, I WILL STOP UPDATING MY PROJECTS 
 			fpsPaint.setColor(Color.WHITE);
 			fpsPaint.setAntiAlias(true);
 			fpsPaint.setTextSize((int)getDen(14));
+			npcs = new NPCS(a);
 			getHolder().addCallback(this);
 		}
 		

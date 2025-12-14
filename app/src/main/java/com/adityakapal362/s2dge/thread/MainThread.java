@@ -48,6 +48,7 @@ public class MainThread extends Thread {
 						synchronized (surfaceHolder) {
 							cvs.drawColor(Color.BLACK);
 							if (gamePanel.reqMX != 0 || gamePanel.reqMY != 0) gamePanel.updatePlayerPosition();
+							gamePanel.npc.animateNPCS();
 							gamePanel.draw(cvs);
 							gamePanel.ldbar.animate();
 						}
